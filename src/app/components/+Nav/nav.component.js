@@ -16,6 +16,8 @@ var NavComponent = (function () {
         this.interval = 800;
         this.sendQuery = null;
     }
+    NavComponent.prototype.onKeyDown = function (e) {
+    };
     NavComponent.prototype.onInputChange = function (e) {
         var _this = this;
         if (this.sendQuery != null) {
@@ -29,7 +31,7 @@ var NavComponent = (function () {
         core_1.Component({
             selector: 'header',
             templateUrl: 'nav.component.html',
-            styleUrls: ['nav.component.css'],
+            styleUrls: ['nav.component.css']
         }), 
         __metadata('design:paramtypes', [queryService_1.QueryService])
     ], NavComponent);

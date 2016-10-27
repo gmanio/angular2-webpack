@@ -16,3 +16,7 @@ import 'rxjs';
 // Youtube client library
 import '../public/vendor/gapi.js';
 import '../public/vendor/player_api.js';
+
+// Material UI
+import '../public/vendor/material.min.css';
+import '../public/vendor/material.min.js';

@@ -15,7 +15,6 @@ import {QueryService} from '../../services/queryService'
 export class YoutubeComponent implements AfterViewChecked {
     static apiKey = 'AIzaSyA4k_7jggyPzjs1Tv90go3eoRyn5War9LQ';
 
-    isLoaded: boolean = false;
     isLoading: boolean = true;
     videoList: any = [];
 
@@ -29,11 +28,12 @@ export class YoutubeComponent implements AfterViewChecked {
         queryService.searchQueryObservable.subscribe(
             (e) => {
                 if (this.isLoading == false) {
+                    console.log('observable')
+                    this.isLoading = true;
+                    this.forceViewRefresh();
+
                     this.videoList = [];
                     this.nextPageToken = null;
-                    this.isLoading = true;
-                    this.cd.markForCheck();
-                    this.cd.detectChanges();
                     this.query = e;
                     this.request(null);
                 }
@@ -52,7 +52,7 @@ export class YoutubeComponent implements AfterViewChecked {
         let scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
-        if (scrollBottom >= (windowHeight / 1.2)) {
+        if (scrollBottom >= (windowHeight / 1.3)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -88,21 +88,13 @@ export class YoutubeComponent implements AfterViewChecked {
     }
 
     onLoadSuccess(res) {
-        let result = res.result;
-
-        this.videoList = this.videoList.concat(result.items);
-
-        this.nextPageToken = result.nextPageToken;
-        this.isLoaded = true;
+        this.videoList = this.videoList.concat(res.result.items);
+        this.nextPageToken = res.result.nextPageToken;
 
         setTimeout(()=> {
             this.isLoading = false;
-
-            this.cd.markForCheck();
-            this.cd.detectChanges();
-        }, 800);
-
-        this.forceViewRefresh();
+            this.forceViewRefresh();
+        }, 500);
     }
 
     onLoadFailed(err) {
@@ -113,12 +105,13 @@ export class YoutubeComponent implements AfterViewChecked {
         console.log('viewchecked');
     }
 
-    forceViewRefresh(){
+    forceViewRefresh() {
         this.cd.markForCheck();
         this.cd.detectChanges();
     }
 
     @ViewChild(PlayerComponent) oPlayer: PlayerComponent;
+
     openPlayer(item) {
         this.oPlayer.open(item);
     }

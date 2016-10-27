@@ -12,18 +12,27 @@ export class PlayerComponent {
     private player;
     isPlayerOpen: boolean = false;
 
-    constructor(){}
+    constructor() {
+        window.addEventListener('resize', this.onResize.bind(this), false);
+    }
 
-    hide(){
+    onResize() {
+        if (this.player) {
+            this.player.setSize(window.innerWidth, window.innerHeight);
+        }
+    }
+
+    hide() {
         this.bodyUnFixed();
-
+        this.player.stopVideo();
         this.isPlayerOpen = false;
     }
 
-    open(item){
+    open(item) {
+        this.isPlayerOpen = true;
         this.bodyFixed();
 
-        if(this.player){
+        if (this.player) {
             this.player.loadVideoById(item.id.videoId);
             return;
         }
@@ -32,20 +41,19 @@ export class PlayerComponent {
             height: window.innerHeight,
             width: window.innerWidth,
             events: {
-                'onReady': (e)=>{
-                    this.isPlayerOpen = true;
+                'onReady': (e)=> {
                     e.target.playVideo();
                 }
             }
         });
     }
 
-    bodyFixed(){
+    bodyFixed() {
         let body = document.getElementsByTagName('body')[0];
         body.classList.add("fixed");   //add the class
     }
 
-    bodyUnFixed(){
+    bodyUnFixed() {
         let body = document.getElementsByTagName('body')[0];
         body.classList.remove("fixed");   //remove the class
     }

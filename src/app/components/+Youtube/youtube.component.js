@@ -15,18 +15,17 @@ var YoutubeComponent = (function () {
     function YoutubeComponent(cd, queryService) {
         var _this = this;
         this.cd = cd;
-        this.isLoaded = false;
         this.isLoading = true;
         this.videoList = [];
         this.cd = cd;
         this.attachedEvent();
         queryService.searchQueryObservable.subscribe(function (e) {
             if (_this.isLoading == false) {
+                console.log('observable');
+                _this.isLoading = true;
+                _this.forceViewRefresh();
                 _this.videoList = [];
                 _this.nextPageToken = null;
-                _this.isLoading = true;
-                _this.cd.markForCheck();
-                _this.cd.detectChanges();
                 _this.query = e;
                 _this.request(null);
             }
@@ -40,7 +39,7 @@ var YoutubeComponent = (function () {
     YoutubeComponent.prototype.onScroll = function () {
         var scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         var windowHeight = document.body.scrollHeight;
-        if (scrollBottom >= (windowHeight / 1.2)) {
+        if (scrollBottom >= (windowHeight / 1.3)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -70,16 +69,12 @@ var YoutubeComponent = (function () {
     };
     YoutubeComponent.prototype.onLoadSuccess = function (res) {
         var _this = this;
-        var result = res.result;
-        this.videoList = this.videoList.concat(result.items);
-        this.nextPageToken = result.nextPageToken;
-        this.isLoaded = true;
+        this.videoList = this.videoList.concat(res.result.items);
+        this.nextPageToken = res.result.nextPageToken;
         setTimeout(function () {
             _this.isLoading = false;
-            _this.cd.markForCheck();
-            _this.cd.detectChanges();
-        }, 800);
-        this.forceViewRefresh();
+            _this.forceViewRefresh();
+        }, 500);
     };
     YoutubeComponent.prototype.onLoadFailed = function (err) {
         console.warn(err);

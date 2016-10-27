@@ -5,7 +5,7 @@ import {QueryService} from '../../services/queryService'
 @Component({
     selector: 'header',
     templateUrl: 'nav.component.html',
-    styleUrls: ['nav.component.css'],
+    styleUrls: ['nav.component.css']
 })
 
 export class NavComponent {
@@ -17,6 +17,10 @@ export class NavComponent {
         this.queryService = queryService;
         this.interval = 800;
         this.sendQuery = null;
+    }
+
+    onKeyDown(e) {
+
     }
 
     onInputChange(e) {

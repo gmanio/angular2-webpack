@@ -1,5 +1,21 @@
 <nav>
-    <h1>youtube</h1>
-    <input [(ngModel)]="search" (ngModelChange)="onInputChange($event)">
-    {{search}}
+    <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+        Sort
+    </button>
+
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+        for="demo-menu-lower-left">
+        <li class="mdl-menu__item">Some Action</li>
+        <li class="mdl-menu__item">Another Action</li>
+        <li class="mdl-menu__item">Yet Another Action</li>
+    </ul>
+    <div class="search_area">
+        <label class="mdl-button mdl-js-button mdl-button--icon" for="inp_search">
+            <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="inp_search" [(ngModel)]="searchText" (ngModelChange)="onInputChange($event)">
+            <label class="mdl-textfield__label" for="inp_search">Search...</label>
+        </div>
+    </div>
 </nav>

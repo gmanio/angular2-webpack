@@ -14,4 +14,7 @@ require('rxjs');
 // Youtube client library
 require('../public/vendor/gapi.js');
 require('../public/vendor/player_api.js');
+// Material UI
+require('../public/vendor/material.min.css');
+require('../public/vendor/material.min.js');
 //# sourceMappingURL=vendor.js.map

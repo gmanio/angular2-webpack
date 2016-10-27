@@ -12,13 +12,20 @@ var core_1 = require('@angular/core');
 var PlayerComponent = (function () {
     function PlayerComponent() {
         this.isPlayerOpen = false;
+        window.addEventListener('resize', this.onResize.bind(this), false);
     }
+    PlayerComponent.prototype.onResize = function () {
+        if (this.player) {
+            this.player.setSize(window.innerWidth, window.innerHeight);
+        }
+    };
     PlayerComponent.prototype.hide = function () {
         this.bodyUnFixed();
+        this.player.stopVideo();
         this.isPlayerOpen = false;
     };
     PlayerComponent.prototype.open = function (item) {
-        var _this = this;
+        this.isPlayerOpen = true;
         this.bodyFixed();
         if (this.player) {
             this.player.loadVideoById(item.id.videoId);
@@ -29,7 +36,6 @@ var PlayerComponent = (function () {
             width: window.innerWidth,
             events: {
                 'onReady': function (e) {
-                    _this.isPlayerOpen = true;
                     e.target.playVideo();
                 }
             }

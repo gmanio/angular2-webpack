@@ -1,4 +1,4 @@
-.youtube{
+.youtube {
     overflow: hidden;
 }
 
@@ -8,8 +8,8 @@
     background: #16171d;
     opacity: 0.9;
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     z-index: 9999;
 }
 
@@ -158,16 +158,9 @@
     height: 100%;
 }
 
-.btn_cle {
-    display: block;
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    top: 0;
-    left: 0;
-    right: 40px;
-    z-index: 10000;
-    border: 1px solid red;
+.mdl-button {
+    position: absolute;
+    color: #fff;
 }
 
 .video { background: #ddd }
