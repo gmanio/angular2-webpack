@@ -1,0 +1,18 @@
+<script src="../+Nav/nav.component.ts"></script>
+<div class="youtube">
+    <playerComponent></playerComponent>
+    <ul class="list_video" [hidden]="!isLoaded">
+        <li class='video' *ngFor="let item of videoList; let index = index;" (click)="openPlayer(item)">
+            <img src="{{item.snippet.thumbnails.high.url}}" width="100%">
+        </li>
+    </ul>
+    <div class="youtube_loading" [hidden]="!isLoading">
+        <div>
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+        </div>
+        <span>loading</span>
+    </div>
+</div>

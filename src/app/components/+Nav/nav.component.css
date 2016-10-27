@@ -1,0 +1,13 @@
+nav {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 50px;
+    font-size: 14px;
+    line-height: 50px;
+    background: #19bee1;
+    text-align: center;
+}
+
+h1{float:left}
+input{float:right}
