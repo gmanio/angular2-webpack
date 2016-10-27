@@ -4,9 +4,10 @@
   "description": "angular2-webpack",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.development.js",
+    "dev": "webpack-dev-server --config webpack.development.js --content-base ./dist",
     "test": "karma start",
-    "build": "webpack --config webpack.production.js --progress --profile --bail"
+    "build": "SET NODE_ENV=production && webpack --config webpack.production.js --progress --profile --bail",
+    "clean": "rimraf dist/*"
   },
   "author": "GmanPark@2016",
   "license": "MIT",
@@ -38,6 +39,7 @@
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.0",
     "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "typescript": "^2.0.3",
     "webpack": "^1.13.2",

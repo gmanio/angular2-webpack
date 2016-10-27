@@ -16,6 +16,8 @@ module.exports = webpackMerge(commonConfig, {
     ],
 
     devServer: {
+        contentBase: '/',
+        publicPath: __dirname + '/dist/',
         port: 3000,
         host: '0.0.0.0',
         hot: true,
@@ -24,7 +26,6 @@ module.exports = webpackMerge(commonConfig, {
         historyApiFallback: true,
         compress: true,
         quiet: false,
-        progress: true,
-        stats: 'minimal'
+        progress: true
     }
 })

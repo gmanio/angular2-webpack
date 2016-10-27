@@ -6,8 +6,6 @@ var commonConfig = require('./config/webpack.common.js');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = webpackMerge(commonConfig, {
-    devtool: 'source-map',
-
     output: {
         path: __dirname + '/dist/',
         publicPath: '/',
@@ -16,7 +14,7 @@ module.exports = webpackMerge(commonConfig, {
     },
 
     htmlLoader: {
-        minimize: false // workaround for ng2
+        minimize: true // workaround for ng2
     },
 
     plugins: [
