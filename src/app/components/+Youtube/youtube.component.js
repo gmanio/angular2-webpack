@@ -19,7 +19,7 @@ var YoutubeComponent = (function () {
         this.videoList = [];
         this.cd = cd;
         this.attachedEvent();
-        queryService.searchQueryObservable.subscribe(function (e) {
+        queryService.searchTextObservable.subscribe(function (e) {
             if (_this.isLoading == false) {
                 console.log('observable');
                 _this.isLoading = true;
@@ -27,6 +27,16 @@ var YoutubeComponent = (function () {
                 _this.videoList = [];
                 _this.nextPageToken = null;
                 _this.query = e;
+                _this.request(null);
+            }
+        });
+        queryService.searchSortObservable.subscribe(function (e) {
+            if (_this.isLoading == false) {
+                _this.isLoading = true;
+                _this.forceViewRefresh();
+                _this.videoList = [];
+                _this.nextPageToken = null;
+                _this.sort = e;
                 _this.request(null);
             }
         });
@@ -59,7 +69,7 @@ var YoutubeComponent = (function () {
         var initOption = {
             part: 'snippet',
             q: this.query ? this.query : 'ps4',
-            order: 'date',
+            order: this.sort ? this.sort : 'relevance',
             maxResults: 10
         };
         if (query != null) {

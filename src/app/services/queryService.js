@@ -12,11 +12,19 @@ var core_1 = require('@angular/core');
 var rxjs_1 = require("rxjs");
 var QueryService = (function () {
     function QueryService() {
-        this.searchQueryObservable = new rxjs_1.BehaviorSubject("");
+        this.searchTextObservable = new rxjs_1.BehaviorSubject("");
+        this.searchSortObservable = new rxjs_1.BehaviorSubject("");
     }
     Object.defineProperty(QueryService.prototype, "searchText", {
         set: function (value) {
-            this.searchQueryObservable.next(value);
+            this.searchTextObservable.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(QueryService.prototype, "searchSort", {
+        set: function (value) {
+            this.searchSortObservable.next(value);
         },
         enumerable: true,
         configurable: true

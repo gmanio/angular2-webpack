@@ -1,14 +1,18 @@
 <nav>
-    <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-        Sort
-    </button>
-
-    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-        for="demo-menu-lower-left">
-        <li class="mdl-menu__item">Some Action</li>
-        <li class="mdl-menu__item">Another Action</li>
-        <li class="mdl-menu__item">Yet Another Action</li>
-    </ul>
+    <div class="wrap_lower_left">
+        <button id="menu-lower-left" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+            <label>Sort</label>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+            for="menu-lower-left">
+            <li class="mdl-menu__item" (click)="onClickedSort('date')">Date</li>
+            <li class="mdl-menu__item" (click)="onClickedSort('rating')">Rating</li>
+            <li class="mdl-menu__item" (click)="onClickedSort('relevance')">Relevance</li>
+            <li class="mdl-menu__item" (click)="onClickedSort('title')">Title</li>
+            <li class="mdl-menu__item" (click)="onClickedSort('videoCount')">VideoCount</li>
+            <li class="mdl-menu__item" (click)="onClickedSort('viewCount')">ViewCount</li>
+        </ul>
+    </div>
     <div class="search_area">
         <label class="mdl-button mdl-js-button mdl-button--icon" for="inp_search">
             <i class="material-icons">search</i>

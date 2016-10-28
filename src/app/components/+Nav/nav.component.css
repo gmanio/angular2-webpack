@@ -8,7 +8,13 @@ nav {
 
 .mdl-textfield {
     width: 150px;
-    /*padding-bottom: 0;*/
+}
+
+.wrap_lower_left {
+    position: absolute;
+    float: left;
+    top: 10px;
+    left: 10px;
 }
 
 .search_area {

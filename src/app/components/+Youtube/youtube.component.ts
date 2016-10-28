@@ -20,26 +20,36 @@ export class YoutubeComponent implements AfterViewChecked {
 
     private nextPageToken;
     private query;
+    private sort;
 
     constructor(private cd: ChangeDetectorRef, queryService: QueryService) {
         this.cd = cd;
         this.attachedEvent();
 
-        queryService.searchQueryObservable.subscribe(
-            (e) => {
-                if (this.isLoading == false) {
-                    console.log('observable')
-                    this.isLoading = true;
-                    this.forceViewRefresh();
+        queryService.searchTextObservable.subscribe((e) => {
+            if (this.isLoading == false) {
+                console.log('observable')
+                this.isLoading = true;
+                this.forceViewRefresh();
 
-                    this.videoList = [];
-                    this.nextPageToken = null;
-                    this.query = e;
-                    this.request(null);
-                }
-
+                this.videoList = [];
+                this.nextPageToken = null;
+                this.query = e;
+                this.request(null);
             }
-        );
+        });
+
+        queryService.searchSortObservable.subscribe((e)=> {
+            if (this.isLoading == false) {
+                this.isLoading = true;
+                this.forceViewRefresh();
+
+                this.videoList = [];
+                this.nextPageToken = null;
+                this.sort = e;
+                this.request(null);
+            }
+        })
     }
 
     attachedEvent() {
@@ -76,7 +86,7 @@ export class YoutubeComponent implements AfterViewChecked {
         let initOption = {
             part: 'snippet', //required
             q: this.query ? this.query : 'ps4',
-            order: 'date',
+            order: this.sort ? this.sort : 'relevance',
             maxResults: 10
         }
 

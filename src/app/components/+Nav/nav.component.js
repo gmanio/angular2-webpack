@@ -16,6 +16,9 @@ var NavComponent = (function () {
         this.interval = 800;
         this.sendQuery = null;
     }
+    NavComponent.prototype.onClickedSort = function (sSort) {
+        this.queryService.searchSort = sSort;
+    };
     NavComponent.prototype.onKeyDown = function (e) {
     };
     NavComponent.prototype.onInputChange = function (e) {

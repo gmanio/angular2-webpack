@@ -3,9 +3,14 @@ import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class QueryService {
-    public searchQueryObservable: BehaviorSubject<string> = new BehaviorSubject<string>("");
+    public searchTextObservable: BehaviorSubject<string> = new BehaviorSubject<string>("");
+    public searchSortObservable: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
     set searchText(value: string) {
-        this.searchQueryObservable.next(value);
+        this.searchTextObservable.next(value);
+    }
+
+    set searchSort(value: string) {
+        this.searchSortObservable.next(value);
     }
 }

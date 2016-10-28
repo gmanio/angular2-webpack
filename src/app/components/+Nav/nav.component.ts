@@ -19,6 +19,10 @@ export class NavComponent {
         this.sendQuery = null;
     }
 
+    onClickedSort(sSort){
+        this.queryService.searchSort = sSort;
+    }
+
     onKeyDown(e) {
 
     }
