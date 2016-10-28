@@ -62,7 +62,7 @@ export class YoutubeComponent implements AfterViewChecked {
         let scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
-        if (scrollBottom >= (windowHeight / 1.3)) {
+        if (scrollBottom >= (windowHeight / 1.6)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
