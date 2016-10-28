@@ -34,6 +34,7 @@ var PlayerComponent = (function () {
         this.player = new window['YT'].Player('ytplayer', {
             height: window.innerHeight,
             width: window.innerWidth,
+            videoId: item.id.videoId,
             events: {
                 'onReady': function (e) {
                     e.target.playVideo();

@@ -40,6 +40,7 @@ export class PlayerComponent {
         this.player = new window['YT'].Player('ytplayer', {
             height: window.innerHeight,
             width: window.innerWidth,
+            videoId: item.id.videoId,
             events: {
                 'onReady': (e)=> {
                     e.target.playVideo();

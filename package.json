@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack.development.js --content-base ./dist",
     "test": "karma start",
-    "build": "SET NODE_ENV=production && webpack --config webpack.production.js --progress --profile --bail",
+    "build": "npm run clean && SET NODE_ENV=production && webpack --config webpack.production.js --progress --profile --bail",
     "clean": "rimraf dist/*"
   },
   "author": "GmanPark@2016",
