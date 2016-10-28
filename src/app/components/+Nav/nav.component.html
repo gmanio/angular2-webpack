@@ -18,7 +18,7 @@
             <i class="material-icons">search</i>
         </label>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="inp_search" [(ngModel)]="searchText" (ngModelChange)="onInputChange($event)">
+            <input class="mdl-textfield__input" type="text" id="inp_search" (keyup)="onKeyUp($event)" [(ngModel)]="searchText" (ngModelChange)="onInputChange($event)">
             <label class="mdl-textfield__label" for="inp_search">Search...</label>
         </div>
     </div>

@@ -19,7 +19,14 @@ var NavComponent = (function () {
     NavComponent.prototype.onClickedSort = function (sSort) {
         this.queryService.searchSort = sSort;
     };
-    NavComponent.prototype.onKeyDown = function (e) {
+    NavComponent.prototype.onKeyUp = function (e) {
+        var keyEvent = e;
+        if (this.isBlur != null) {
+            clearTimeout(this.isBlur);
+        }
+        this.isBlur = setTimeout(function () {
+            keyEvent.target.blur();
+        }, this.interval);
     };
     NavComponent.prototype.onInputChange = function (e) {
         var _this = this;

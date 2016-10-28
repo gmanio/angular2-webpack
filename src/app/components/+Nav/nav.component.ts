@@ -12,6 +12,7 @@ export class NavComponent {
     private queryService;
     private interval;
     private sendQuery;
+    private isBlur;
 
     constructor(queryService: QueryService) {
         this.queryService = queryService;
@@ -19,12 +20,20 @@ export class NavComponent {
         this.sendQuery = null;
     }
 
-    onClickedSort(sSort){
+    onClickedSort(sSort) {
         this.queryService.searchSort = sSort;
     }
 
-    onKeyDown(e) {
+    onKeyUp(e) {
+        let keyEvent = e;
 
+        if (this.isBlur != null) {
+            clearTimeout(this.isBlur);
+        }
+
+        this.isBlur = setTimeout(()=> {
+            keyEvent.target.blur();
+        }, this.interval);
     }
 
     onInputChange(e) {
