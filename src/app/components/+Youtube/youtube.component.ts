@@ -87,7 +87,8 @@ export class YoutubeComponent implements AfterViewChecked {
             part: 'snippet', //required
             q: this.query ? this.query : 'ps4',
             order: this.sort ? this.sort : 'relevance',
-            maxResults: 10
+            maxResults: 20,
+            region: 'KR'
         }
 
         if (query != null) {

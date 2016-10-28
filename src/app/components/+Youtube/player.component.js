@@ -37,7 +37,9 @@ var PlayerComponent = (function () {
             videoId: item.id.videoId,
             events: {
                 'onReady': function (e) {
-                    e.target.playVideo();
+                    setTimeout(function () {
+                        e.target.playVideo();
+                    }, 500);
                 }
             }
         });

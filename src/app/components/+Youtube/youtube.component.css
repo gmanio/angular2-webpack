@@ -163,8 +163,38 @@
     color: #fff;
 }
 
-.video { background: #ddd }
+.video { margin-bottom: 1px; background: #fff }
 
 [hidden] {
     display: none !important;
+}
+
+.demo-card-image.mdl-card {
+    width: 100%;
+    height: auto;
+}
+
+.demo-card-image > .mdl-card__title {
+    padding: 0
+}
+
+.demo-card-image > .mdl-card__actions {
+    position: absolute;
+    bottom: 0;
+    height: 52px;
+    /*padding: 16px;*/
+    background: rgba(0, 0, 0, 0.2);
+    float: left;
+    width: 100%;
+}
+
+.demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

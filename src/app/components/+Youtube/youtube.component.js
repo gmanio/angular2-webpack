@@ -70,7 +70,8 @@ var YoutubeComponent = (function () {
             part: 'snippet',
             q: this.query ? this.query : 'ps4',
             order: this.sort ? this.sort : 'relevance',
-            maxResults: 10
+            maxResults: 20,
+            region: 'KR'
         };
         if (query != null) {
             initOption = Object.assign({}, initOption, query);

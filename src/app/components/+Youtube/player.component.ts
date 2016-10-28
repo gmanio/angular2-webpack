@@ -43,7 +43,9 @@ export class PlayerComponent {
             videoId: item.id.videoId,
             events: {
                 'onReady': (e)=> {
-                    e.target.playVideo();
+                    setTimeout(()=> {
+                        e.target.playVideo();
+                    }, 500);
                 }
             }
         });
