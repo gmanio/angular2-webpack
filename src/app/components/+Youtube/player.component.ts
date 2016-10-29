@@ -13,6 +13,22 @@ export class PlayerComponent {
     isPlayerOpen: boolean = false;
 
     constructor() {
+        window.onload = ()=> {
+            this.player = new window['YT'].Player('ytplayer', {
+                height: window.innerHeight,
+                width: window.innerWidth,
+                // videoId: item.id.videoId,
+                events: {
+                    'onReady': (e)=> {
+                        setTimeout(()=> {
+                            e.target.playVideo();
+                        }, 500);
+                    }
+                }
+            });
+        }
+
+
         window.addEventListener('resize', this.onResize.bind(this), false);
     }
 
@@ -36,19 +52,6 @@ export class PlayerComponent {
             this.player.loadVideoById(item.id.videoId);
             return;
         }
-
-        this.player = new window['YT'].Player('ytplayer', {
-            height: window.innerHeight,
-            width: window.innerWidth,
-            videoId: item.id.videoId,
-            events: {
-                'onReady': (e)=> {
-                    setTimeout(()=> {
-                        e.target.playVideo();
-                    }, 500);
-                }
-            }
-        });
     }
 
     bodyFixed() {

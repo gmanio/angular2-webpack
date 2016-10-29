@@ -21,7 +21,6 @@ var YoutubeComponent = (function () {
         this.attachedEvent();
         queryService.searchTextObservable.subscribe(function (e) {
             if (_this.isLoading == false) {
-                console.log('observable');
                 _this.isLoading = true;
                 _this.forceViewRefresh();
                 _this.videoList = [];
@@ -45,11 +44,12 @@ var YoutubeComponent = (function () {
         window['gapi'].load('client', this.onLoadClient.bind(this));
         window.addEventListener('touchstart', this.onScroll.bind(this), false);
         window.addEventListener('mousedown', this.onScroll.bind(this), false);
+        window.addEventListener('scroll', this.onScroll.bind(this), false);
     };
     YoutubeComponent.prototype.onScroll = function () {
         var scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         var windowHeight = document.body.scrollHeight;
-        if (scrollBottom >= (windowHeight / 1.6)) {
+        if (scrollBottom >= (windowHeight / 1.4)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -82,8 +82,17 @@ var YoutubeComponent = (function () {
         var _this = this;
         this.videoList = this.videoList.concat(res.result.items);
         this.nextPageToken = res.result.nextPageToken;
+        this.isLoading = false;
+        this.forceViewRefresh();
+        var divs = document.querySelectorAll('.video_item');
+        var interval = 100;
+        [].forEach.call(divs, function (div) {
+            setTimeout(function () {
+                div.className += " added";
+            }, interval);
+            interval += 10;
+        });
         setTimeout(function () {
-            _this.isLoading = false;
             _this.forceViewRefresh();
         }, 500);
     };

@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy, AfterViewChecked, ViewChild
 } from '@angular/core';
 import {PlayerComponent} from "./player.component";
-import {QueryService} from '../../services/queryService'
+import {QueryService} from '../../services/queryService';
 
 @Component({
     selector: 'content',
@@ -28,7 +28,6 @@ export class YoutubeComponent implements AfterViewChecked {
 
         queryService.searchTextObservable.subscribe((e) => {
             if (this.isLoading == false) {
-                console.log('observable')
                 this.isLoading = true;
                 this.forceViewRefresh();
 
@@ -56,13 +55,14 @@ export class YoutubeComponent implements AfterViewChecked {
         window['gapi'].load('client', this.onLoadClient.bind(this));
         window.addEventListener('touchstart', this.onScroll.bind(this), false);
         window.addEventListener('mousedown', this.onScroll.bind(this), false);
+        window.addEventListener('scroll', this.onScroll.bind(this), false);
     }
 
     onScroll() {
         let scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
-        if (scrollBottom >= (windowHeight / 1.6)) {
+        if (scrollBottom >= (windowHeight / 1.4)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -102,10 +102,21 @@ export class YoutubeComponent implements AfterViewChecked {
         this.videoList = this.videoList.concat(res.result.items);
         this.nextPageToken = res.result.nextPageToken;
 
-        setTimeout(()=> {
-            this.isLoading = false;
+        this.isLoading = false;
+        this.forceViewRefresh();
+        var divs = document.querySelectorAll('.video_item');
+
+        let interval = 100;
+
+        [].forEach.call(divs, function (div) {
+            setTimeout(()=> {
+                div.className += " added";
+            }, interval);
+            interval += 10;
+        });
+        setTimeout(()=>{
             this.forceViewRefresh();
-        }, 500);
+        },500);
     }
 
     onLoadFailed(err) {

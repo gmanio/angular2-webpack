@@ -2,20 +2,20 @@
 <div class="youtube">
     <playerComponent></playerComponent>
     <ul class="list_video">
-        <li class='video' *ngFor="let item of videoList; let index = index;" (click)="openPlayer(item)">
-            <!--<img src="{{item.snippet.thumbnails.high.url}}" width="100%">-->
-
+        <li class='video_item' *ngFor="let item of videoList; let index = index;" (click)="openPlayer(item)">
             <div class="demo-card-image mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title mdl-card--expand">
                     <img src="{{item.snippet.thumbnails.high.url}}" width="100%" height="100%" border="0" alt="">
                 </div>
                 <div class="mdl-card__actions">
-
                     <span class="demo-card-image__filename">{{item.snippet.title}}</span>
                 </div>
             </div>
         </li>
     </ul>
+    <button class="top-scroll mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">keyboard_arrow_up</i>
+    </button>
     <div class="youtube_loading" [hidden]="!isLoading">
         <div>
             <div class="c1"></div>

@@ -11,7 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var PlayerComponent = (function () {
     function PlayerComponent() {
+        var _this = this;
         this.isPlayerOpen = false;
+        window.onload = function () {
+            _this.player = new window['YT'].Player('ytplayer', {
+                height: window.innerHeight,
+                width: window.innerWidth,
+                // videoId: item.id.videoId,
+                events: {
+                    'onReady': function (e) {
+                        setTimeout(function () {
+                            e.target.playVideo();
+                        }, 500);
+                    }
+                }
+            });
+        };
         window.addEventListener('resize', this.onResize.bind(this), false);
     }
     PlayerComponent.prototype.onResize = function () {
@@ -31,18 +46,6 @@ var PlayerComponent = (function () {
             this.player.loadVideoById(item.id.videoId);
             return;
         }
-        this.player = new window['YT'].Player('ytplayer', {
-            height: window.innerHeight,
-            width: window.innerWidth,
-            videoId: item.id.videoId,
-            events: {
-                'onReady': function (e) {
-                    setTimeout(function () {
-                        e.target.playVideo();
-                    }, 500);
-                }
-            }
-        });
     };
     PlayerComponent.prototype.bodyFixed = function () {
         var body = document.getElementsByTagName('body')[0];
