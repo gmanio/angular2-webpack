@@ -1,4 +1,3 @@
-<script src="../+Nav/nav.component.ts"></script>
 <div class="youtube">
     <playerComponent></playerComponent>
     <ul class="list_video">
@@ -13,7 +12,7 @@
             </div>
         </li>
     </ul>
-    <button class="top-scroll mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <button (click)="onScrollToTop(1000)" [class.show]="isTopScrollVisible" class="top-scroll mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
         <i class="material-icons">keyboard_arrow_up</i>
     </button>
     <div class="youtube_loading" [hidden]="!isLoading">

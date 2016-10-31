@@ -49,6 +49,14 @@ var YoutubeComponent = (function () {
     YoutubeComponent.prototype.onScroll = function () {
         var scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         var windowHeight = document.body.scrollHeight;
+        if (document.body.scrollTop > 50) {
+            this.isTopScrollVisible = true;
+            this.forceViewRefresh();
+        }
+        else {
+            this.isTopScrollVisible = false;
+            this.forceViewRefresh();
+        }
         if (scrollBottom >= (windowHeight / 1.4)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
@@ -56,6 +64,18 @@ var YoutubeComponent = (function () {
                 this.request({ pageToken: this.nextPageToken });
             }
         }
+    };
+    YoutubeComponent.prototype.onScrollToTop = function (scrollDuration) {
+        var scrollHeight = window.scrollY, scrollStep = Math.PI / (scrollDuration / 15), cosParameter = scrollHeight / 2;
+        var scrollCount = 0, scrollMargin, scrollInterval = setInterval(function () {
+            if (window.scrollY != 0) {
+                scrollCount = scrollCount + 1;
+                scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+                window.scrollTo(0, (scrollHeight - scrollMargin));
+            }
+            else
+                clearInterval(scrollInterval);
+        }, 15);
     };
     YoutubeComponent.prototype.onLoadClient = function () {
         var oClient = window['gapi']['client'];

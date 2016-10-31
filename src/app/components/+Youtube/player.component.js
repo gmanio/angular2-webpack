@@ -13,22 +13,22 @@ var PlayerComponent = (function () {
     function PlayerComponent() {
         var _this = this;
         this.isPlayerOpen = false;
-        window.onload = function () {
+        window['onYouTubeIframeAPIReady'] = function () {
             _this.player = new window['YT'].Player('ytplayer', {
                 height: window.innerHeight,
                 width: window.innerWidth,
                 // videoId: item.id.videoId,
                 events: {
                     'onReady': function (e) {
-                        setTimeout(function () {
-                            e.target.playVideo();
-                        }, 500);
+                        e.target.playVideo();
                     }
                 }
             });
         };
-        window.addEventListener('resize', this.onResize.bind(this), false);
     }
+    PlayerComponent.prototype.ngOnInit = function () {
+        window.addEventListener('resize', this.onResize.bind(this), false);
+    };
     PlayerComponent.prototype.onResize = function () {
         if (this.player) {
             this.player.setSize(window.innerWidth, window.innerHeight);

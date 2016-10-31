@@ -44,6 +44,5 @@ export class NavComponent {
         this.sendQuery = setTimeout(()=> {
             this.queryService.searchText = e.toString();
         }, this.interval);
-
     }
 }

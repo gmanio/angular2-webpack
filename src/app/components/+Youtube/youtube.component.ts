@@ -21,6 +21,7 @@ export class YoutubeComponent implements AfterViewChecked {
     private nextPageToken;
     private query;
     private sort;
+    private isTopScrollVisible;
 
     constructor(private cd: ChangeDetectorRef, queryService: QueryService) {
         this.cd = cd;
@@ -62,6 +63,14 @@ export class YoutubeComponent implements AfterViewChecked {
         let scrollBottom = document.body.scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
+        if (document.body.scrollTop > 50) {
+            this.isTopScrollVisible = true;
+            this.forceViewRefresh();
+        } else {
+            this.isTopScrollVisible = false;
+            this.forceViewRefresh();
+        }
+
         if (scrollBottom >= (windowHeight / 1.4)) {
             if (this.isLoading == false) {
                 this.isLoading = true;
@@ -69,6 +78,22 @@ export class YoutubeComponent implements AfterViewChecked {
                 this.request({pageToken: this.nextPageToken});
             }
         }
+    }
+
+    onScrollToTop(scrollDuration) {
+        const scrollHeight = window.scrollY,
+            scrollStep = Math.PI / ( scrollDuration / 15 ),
+            cosParameter = scrollHeight / 2;
+        let scrollCount = 0,
+            scrollMargin,
+            scrollInterval = setInterval(function () {
+                if (window.scrollY != 0) {
+                    scrollCount = scrollCount + 1;
+                    scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+                    window.scrollTo(0, ( scrollHeight - scrollMargin ));
+                }
+                else clearInterval(scrollInterval);
+            }, 15);
     }
 
     onLoadClient() {
@@ -95,7 +120,7 @@ export class YoutubeComponent implements AfterViewChecked {
             initOption = (<any>Object).assign({}, initOption, query);
         }
 
-        window['gapi']['client']['youtube']['search']['list'](initOption).then(this.onLoadSuccess.bind(this), this.onLoadFailed.bind(this))
+        window['gapi']['client']['youtube']['search']['list'](initOption).then(this.onLoadSuccess.bind(this), this.onLoadFailed.bind(this));
     }
 
     onLoadSuccess(res) {

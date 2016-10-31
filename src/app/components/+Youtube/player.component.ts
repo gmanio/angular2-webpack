@@ -1,6 +1,7 @@
 import {
-    Component, Input
+    Component, OnInit, OnChanges, SimpleChanges, Input, EventEmitter
 } from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'playerComponent',
@@ -8,27 +9,27 @@ import {
     styleUrls: ['youtube.component.css'],
 })
 
-export class PlayerComponent {
+export class PlayerComponent implements OnInit {
+
     private player;
     isPlayerOpen: boolean = false;
 
     constructor() {
-        window.onload = ()=> {
+        window['onYouTubeIframeAPIReady'] = ()=> {
             this.player = new window['YT'].Player('ytplayer', {
                 height: window.innerHeight,
                 width: window.innerWidth,
                 // videoId: item.id.videoId,
                 events: {
                     'onReady': (e)=> {
-                        setTimeout(()=> {
-                            e.target.playVideo();
-                        }, 500);
+                        e.target.playVideo();
                     }
                 }
             });
         }
+    }
 
-
+    ngOnInit() {
         window.addEventListener('resize', this.onResize.bind(this), false);
     }
 

@@ -6,7 +6,6 @@ require('@angular/core');
 require('@angular/common');
 require('@angular/http');
 require('@angular/router');
-require('hammerjs');
 // RxJS
 require('rxjs');
 // Other vendors for example jQuery, Lodash or Bootstrap
@@ -15,6 +14,7 @@ require('rxjs');
 require('../public/vendor/gapi.js');
 require('../public/vendor/player_api.js');
 // Material UI
+require('../public/vendor/indigo-pink.css');
 require('../public/vendor/material.min.css');
 require('../public/vendor/material.min.js');
 //# sourceMappingURL=vendor.js.map

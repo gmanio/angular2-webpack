@@ -6,8 +6,6 @@ import '@angular/common';
 import '@angular/http';
 import '@angular/router';
 
-import 'hammerjs'
-
 // RxJS
 import 'rxjs';
 // Other vendors for example jQuery, Lodash or Bootstrap
@@ -18,5 +16,6 @@ import '../public/vendor/gapi.js';
 import '../public/vendor/player_api.js';
 
 // Material UI
+import '../public/vendor/indigo-pink.css';
 import '../public/vendor/material.min.css';
 import '../public/vendor/material.min.js';
