@@ -114,9 +114,9 @@ export class YoutubeComponent implements AfterViewChecked {
             }, interval);
             interval += 10;
         });
-        setTimeout(()=>{
+        setTimeout(()=> {
             this.forceViewRefresh();
-        },500);
+        }, 500);
     }
 
     onLoadFailed(err) {
