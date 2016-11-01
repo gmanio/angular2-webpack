@@ -6,6 +6,4 @@ if (process.env.ENV === 'production') {
     enableProdMode();
 }
 
-enableProdMode();
-
 platformBrowserDynamic().bootstrapModule(AppModule);

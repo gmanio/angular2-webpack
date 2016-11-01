@@ -16,7 +16,7 @@ export class NavComponent {
 
     constructor(queryService: QueryService) {
         this.queryService = queryService;
-        this.interval = 800;
+        this.interval = 2000;
         this.sendQuery = null;
     }
 
