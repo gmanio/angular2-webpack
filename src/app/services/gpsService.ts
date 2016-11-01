@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class GpsService {
-    private sGpsUrl = 'https://gman.io:3000/gps';
+    private sGpsUrl = 'http://gman.io:3000/gps';
     private http;
 
     constructor(http: Http) {
