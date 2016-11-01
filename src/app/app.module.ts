@@ -8,7 +8,6 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './components/+Nav/nav.component';
 import {YoutubeComponent} from './components/+Youtube/youtube.component';
 import {PlayerComponent} from './components/+Youtube/player.component';
-import {GpsService} from './services/gpsService';
 import {FormsModule} from "@angular/forms";
 
 // User Service
@@ -27,7 +26,7 @@ import {QueryService} from './services/queryService';
         PlayerComponent
     ],
     bootstrap: [AppComponent],
-    providers: [QueryService, GpsService]
+    providers: [QueryService]
 })
 export class AppModule {
 }

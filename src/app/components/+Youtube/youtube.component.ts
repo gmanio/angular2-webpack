@@ -110,7 +110,7 @@ export class YoutubeComponent {
     request(query) {
         let initOption = {
             part: 'snippet', //required
-            q: this.query ? this.query : 'teamcoco',
+            q: this.query ? this.query : 'america president',
             order: this.sort ? this.sort : 'relevance',
             maxResults: 20,
             region: 'KR'
