@@ -1,6 +1,6 @@
 import {
     Component, ChangeDetectorRef,
-    ChangeDetectionStrategy, AfterViewChecked, ViewChild
+    ChangeDetectionStrategy, ViewChild
 } from '@angular/core';
 import {PlayerComponent} from "./player.component";
 import {QueryService} from '../../services/queryService';
@@ -12,7 +12,7 @@ import {QueryService} from '../../services/queryService';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class YoutubeComponent implements AfterViewChecked {
+export class YoutubeComponent {
     static apiKey = 'AIzaSyA4k_7jggyPzjs1Tv90go3eoRyn5War9LQ';
 
     isLoading: boolean = true;
@@ -148,17 +148,12 @@ export class YoutubeComponent implements AfterViewChecked {
         console.warn(err);
     }
 
-    ngAfterViewChecked() {
-        console.log('viewchecked');
-    }
-
     forceViewRefresh() {
         this.cd.markForCheck();
         this.cd.detectChanges();
     }
 
     @ViewChild(PlayerComponent) oPlayer: PlayerComponent;
-
     openPlayer(item) {
         this.oPlayer.open(item);
     }

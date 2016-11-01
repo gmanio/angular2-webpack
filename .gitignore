@@ -218,6 +218,8 @@ local.properties
 .idea/
 
 # Ignores compiled TypeScript files
+/src/*.map
+/src/*.js
 /src/app/*.map
 /src/app/*.js
 /src/app/**/*.map
