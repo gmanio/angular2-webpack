@@ -1,7 +1,6 @@
 import {
-    Component, OnInit, OnChanges, SimpleChanges, Input, EventEmitter
+    Component, OnInit
 } from '@angular/core';
-import {Observable} from "rxjs";
 
 @Component({
     selector: 'playerComponent',

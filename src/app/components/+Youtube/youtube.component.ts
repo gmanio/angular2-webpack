@@ -6,7 +6,6 @@ import {PlayerComponent} from "./player.component";
 import {QueryService} from '../../services/queryService';
 
 @Component({
-    selector: 'content',
     templateUrl: 'youtube.component.html',
     styleUrls: ['youtube.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush

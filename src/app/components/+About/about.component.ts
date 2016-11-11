@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'content',
+    selector: 'aboutComponent',
     templateUrl: 'about.component.html',
 })
 
-export class AboutComponent{
-
-}
+export class AboutComponent{}
