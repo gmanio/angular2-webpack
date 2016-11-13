@@ -71,6 +71,6 @@ html, body {
 }
 
 .fixed{
-    /*position: fixed;*/
     overflow: hidden;
+    position: fixed;
 }

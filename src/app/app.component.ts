@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -7,4 +8,18 @@ import {Component, ViewEncapsulation} from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {}
+export class AppComponent {
+    constructor(private router: Router) {
+        this.router = router;
+
+        this.setEvents();
+    }
+
+    setEvents() {
+        this.router.events.subscribe((val) => {
+            console.log(this.router.routerState);
+        });
+    }
+
+
+}

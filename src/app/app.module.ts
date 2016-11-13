@@ -35,5 +35,6 @@ import {routingModule} from './app.routes';
     bootstrap: [AppComponent],
     providers: [QueryService]
 })
+
 export class AppModule {
 }
