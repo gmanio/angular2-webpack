@@ -134,7 +134,9 @@ export class YoutubeComponent {
 
         [].forEach.call(divs, function (div) {
             setTimeout(()=> {
-                div.className += " added";
+                if (!div.classList.contains('added')) {
+                    div.className += " added";
+                }
             }, interval);
             interval += 10;
         });
@@ -153,6 +155,7 @@ export class YoutubeComponent {
     }
 
     @ViewChild(PlayerComponent) oPlayer: PlayerComponent;
+
     openPlayer(item) {
         this.oPlayer.open(item);
     }
