@@ -60,6 +60,13 @@ export class YoutubeComponent {
 
     onScroll() {
         let scrollTop = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+
+        if (document.body.scrollTop == 0) {
+            scrollTop = document.documentElement.scrollTop;
+        } else {
+            scrollTop = document.body.scrollTop;
+        }
+
         let scrollBottom = scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
@@ -82,17 +89,16 @@ export class YoutubeComponent {
     }
 
     onScrollToTop(scrollDuration) {
-        const scrollHeight = window.scrollY || window.pageYOffset || document.documentElement.scrollTop,
+        const scrollHeight = typeof window.scrollY === "undefined" ? window.pageYOffset : window.scrollY,
             scrollStep = Math.PI / ( scrollDuration / 15 ),
             cosParameter = scrollHeight / 2;
         let scrollCount = 0,
             scrollMargin,
             scrollInterval = setInterval(function () {
-                if (scrollHeight != 0) {
+                if (typeof window.scrollY === "undefined" ? window.pageYOffset : window.scrollY != 0) {
                     scrollCount = scrollCount + 1;
                     scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
-                    window.scrollTo(0, ( scrollHeight - scrollMargin ));
-                    console.log(scrollHeight);
+                    window.scrollTo(0, scrollHeight - scrollMargin);
                 }
                 else clearInterval(scrollInterval);
             }, 15);

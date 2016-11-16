@@ -35,5 +35,4 @@ import {routingModule} from './app.routes';
     providers: [QueryService]
 })
 
-export class AppModule {
-}
+export class AppModule {}
