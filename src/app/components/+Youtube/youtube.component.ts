@@ -38,7 +38,7 @@ export class YoutubeComponent {
             }
         });
 
-        queryService.searchSortObservable.subscribe((e)=> {
+        queryService.searchSortObservable.subscribe((e) => {
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -53,16 +53,17 @@ export class YoutubeComponent {
 
     attachedEvent() {
         window['gapi'].load('client', this.onLoadClient.bind(this));
-        window.addEventListener('touchstart', this.onScroll.bind(this), false);
-        window.addEventListener('mousedown', this.onScroll.bind(this), false);
-        window.addEventListener('scroll', this.onScroll.bind(this), false);
+        document.addEventListener('touchstart', this.onScroll.bind(this), false);
+        document.addEventListener('mousedown', this.onScroll.bind(this), false);
+        document.addEventListener('scroll', this.onScroll.bind(this), false);
     }
 
     onScroll() {
-        let scrollBottom = document.body.scrollTop + document.body.offsetHeight;
+        let scrollTop = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+        let scrollBottom = scrollTop + document.body.offsetHeight;
         let windowHeight = document.body.scrollHeight;
 
-        if (document.body.scrollTop > 50) {
+        if (scrollTop > 50) {
             this.isTopScrollVisible = true;
             this.forceViewRefresh();
         } else {
@@ -71,6 +72,7 @@ export class YoutubeComponent {
         }
 
         if (scrollBottom >= (windowHeight / 1.4)) {
+
             if (this.isLoading == false) {
                 this.isLoading = true;
                 this.forceViewRefresh();
@@ -80,16 +82,17 @@ export class YoutubeComponent {
     }
 
     onScrollToTop(scrollDuration) {
-        const scrollHeight = window.scrollY,
+        const scrollHeight = window.scrollY || window.pageYOffset || document.documentElement.scrollTop,
             scrollStep = Math.PI / ( scrollDuration / 15 ),
             cosParameter = scrollHeight / 2;
         let scrollCount = 0,
             scrollMargin,
             scrollInterval = setInterval(function () {
-                if (window.scrollY != 0) {
+                if (scrollHeight != 0) {
                     scrollCount = scrollCount + 1;
                     scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
                     window.scrollTo(0, ( scrollHeight - scrollMargin ));
+                    console.log(scrollHeight);
                 }
                 else clearInterval(scrollInterval);
             }, 15);
@@ -133,14 +136,14 @@ export class YoutubeComponent {
         let interval = 100;
 
         [].forEach.call(divs, function (div) {
-            setTimeout(()=> {
+            setTimeout(() => {
                 if (!div.classList.contains('added')) {
                     div.className += " added";
                 }
             }, interval);
             interval += 10;
         });
-        setTimeout(()=> {
+        setTimeout(() => {
             this.forceViewRefresh();
         }, 500);
     }
