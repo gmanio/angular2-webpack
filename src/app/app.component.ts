@@ -17,7 +17,7 @@ export class AppComponent {
 
     setEvents() {
         this.router.events.subscribe((val) => {
-            console.log(this.router.routerState);
+            console.log(val);
         });
     }
 

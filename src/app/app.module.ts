@@ -10,6 +10,8 @@ import {NavComponent} from './components/+Nav/nav.component';
 import {YoutubeComponent} from './components/+Youtube/youtube.component';
 import {PlayerComponent} from './components/+Youtube/player.component';
 import {AboutComponent} from './components/+About/about.component'
+import {PortfolioComponent} from './components/+About/portfolio/portfolio.component';
+import {PageNotFoundComponent} from './components/+Error/page.not.found.component';
 
 // User Service
 import {QueryService} from './services/queryService';
@@ -29,7 +31,9 @@ import {routingModule} from './app.routes';
         NavComponent,
         YoutubeComponent,
         PlayerComponent,
-        AboutComponent
+        AboutComponent,
+        PortfolioComponent,
+        PageNotFoundComponent
     ],
     bootstrap: [AppComponent],
     providers: [QueryService]
