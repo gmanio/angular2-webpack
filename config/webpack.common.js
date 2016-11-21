@@ -44,12 +44,17 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
 
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: ['polyfills', 'vendor', 'app']
+        // }),
+
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor', 'polyfills']
+            name: "bundle",
+            chunks: ['polyfills', 'vendor', 'app']
         }),
 
-        new HtmlWebpackPlugin({
-            template: './index.html'
-        })
+        // new HtmlWebpackPlugin({
+        //     template: './index.html'
+        // })
     ]
 };

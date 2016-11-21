@@ -11,6 +11,9 @@ import 'rxjs';
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
 
+// VanillaJS
+import '../public/vendor/vanilla.js';
+
 // Youtube client library
 import '../public/vendor/gapi.js';
 import '../public/vendor/player_api.js';

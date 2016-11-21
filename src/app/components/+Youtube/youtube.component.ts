@@ -89,19 +89,7 @@ export class YoutubeComponent {
     }
 
     onScrollToTop(scrollDuration) {
-        const scrollHeight = typeof window.scrollY === "undefined" ? window.pageYOffset : window.scrollY,
-            scrollStep = Math.PI / ( scrollDuration / 15 ),
-            cosParameter = scrollHeight / 2;
-        let scrollCount = 0,
-            scrollMargin,
-            scrollInterval = setInterval(function () {
-                if (typeof window.scrollY === "undefined" ? window.pageYOffset : window.scrollY != 0) {
-                    scrollCount = scrollCount + 1;
-                    scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
-                    window.scrollTo(0, scrollHeight - scrollMargin);
-                }
-                else clearInterval(scrollInterval);
-            }, 15);
+        window.scrollTo(0, 0);
     }
 
     onLoadClient() {
