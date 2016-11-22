@@ -40,9 +40,13 @@ export class NavComponent {
         if (this.sendQuery != null) {
             clearTimeout(this.sendQuery);
         }
+        //
+        // this.sendQuery = setTimeout(()=> {
+        //     this.queryService.searchText = e.toString();
+        // }, this.interval);
+    }
 
-        this.sendQuery = setTimeout(()=> {
-            this.queryService.searchText = e.toString();
-        }, this.interval);
+    search(searchText){
+        this.queryService.searchText = searchText;
     }
 }
